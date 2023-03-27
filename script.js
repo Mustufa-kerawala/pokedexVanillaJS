@@ -18,7 +18,7 @@ const colors = {
 }
 
 const main_types = Object.keys(colors);
-// console.log(main_types);
+
 
 const fetchPokemon = async () => {
     for (let i = 1; i <= pokemonCount; i++) {
@@ -38,6 +38,10 @@ const createPokemonCard = (pokemon) => {
     // Making div for each pokemon and adding class
     const pokemonEl = document.createElement("div");
     pokemonEl.classList.add("pokemon");
+    const moreInfo = document.createElement("button");
+    moreInfo.classList.add("more-info");
+    moreInfo.innerText = "More Info";
+    
 
     // Uppercasing first letter from name of each pokemon
     const name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
@@ -73,8 +77,11 @@ const createPokemonCard = (pokemon) => {
     `;
 
     pokemonEl.innerHTML = pokeInnerHTML;
+    pokemonEl.appendChild(moreInfo);
 
     pokeContainer.appendChild(pokemonEl);
 }
 
 fetchPokemon();
+
+
