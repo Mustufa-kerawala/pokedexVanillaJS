@@ -14,16 +14,34 @@ const colors = {
     psychic: "#eaeda1",
     flying: "rgba(4, 240, 250, 0.8)",
     fighting: "rgba(210, 31, 31, 0.9)",
-    normal: "rgba(109, 147, 168, 0.8))"
+    normal: "rgba(3, 1, 1, 0.8))"
 }
 
 const main_types = Object.keys(colors);
+
+// Show Modal Content
+const modalContainer = document.querySelector(".modal-container");
+const modal = document.querySelector(".modal");
 
 
 const fetchPokemon = async () => {
     for (let i = 1; i <= pokemonCount; i++) {
         await getPokemon(i);
     }
+
+    // Creating a modal for each pokemon which is accessed by clicking on the "More Info" button
+const moreInfo = document.querySelector(".open");
+moreInfo.addEventListener("click", () => {
+    modalContainer.classList.add("show");
+
+    })
+
+    // Closing the modal
+    const closeBtn = document.querySelector(".close");
+    // console.log(closeBtn);
+    closeBtn.addEventListener("click", () => {
+        modalContainer.classList.remove("show");
+    })
 }
 
 const getPokemon = async id => {
@@ -39,7 +57,7 @@ const createPokemonCard = (pokemon) => {
     const pokemonEl = document.createElement("div");
     pokemonEl.classList.add("pokemon");
     const moreInfo = document.createElement("button");
-    moreInfo.classList.add("more-info");
+    moreInfo.classList.add("open");
     moreInfo.innerText = "More Info";
     
 
@@ -85,3 +103,7 @@ const createPokemonCard = (pokemon) => {
 fetchPokemon();
 
 
+
+// moreInfo.addEventListener("click", () => {
+//     console.log("clicked");
+// })
